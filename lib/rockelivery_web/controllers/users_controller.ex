@@ -26,7 +26,16 @@ defmodule RockeliveryWeb.UserController do
     with {:ok, %User{} = user} <- Rockelivery.get_user_by_id(id) do
       conn
       |> put_status(:ok)
-      |> render("show.json", user: user)
+      |> render("user.json", user: user)
     end
   end
+
+  def update(conn, params) do
+    with {:ok, %User{} = user} <- Rockelivery.get_user_by_id(params) do
+      conn
+      |> put_status(:ok)
+      |> render("user.json", user: user)
+    end
+  end
+
 end
